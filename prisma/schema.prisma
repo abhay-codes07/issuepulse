@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String         @id @default(cuid())
+  clerkId          String         @unique
+  email            String
+  pushSubscription String?        @db.Text
+  createdAt        DateTime       @default(now())
+  trackedRepos     TrackedRepo[]
+  notifications    Notification[]
+}
+
+model TrackedRepo {
+  id                 String              @id @default(cuid())
+  userId             String
+  owner              String
+  repo               String
+  avatarUrl          String?
+  lastChecked        DateTime            @default(now())
+  emailEnabled       Boolean             @default(true)
+  pushEnabled        Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  labelSubscriptions LabelSubscription[]
+  
+  @@unique([userId, owner, repo])
+  @@index([userId])
+}
+
+model LabelSubscription {
+  id            String      @id @default(cuid())
+  trackedRepoId String
+  label         String
+  color         String?
+  trackedRepo   TrackedRepo @relation(fields: [trackedRepoId], references: [id], onDelete: Cascade)
+  
+  @@unique([trackedRepoId, label])
+  @@index([trackedRepoId])
+}
+
+model Notification {
+  id           String   @id @default(cuid())
+  userId       String
+  repoFullName String
+  issueTitle   String
+  issueUrl     String
+  issueNumber  Int
+  labels       String[] 
+  isRead       Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+}
