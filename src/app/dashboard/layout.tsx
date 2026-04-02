@@ -150,7 +150,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <UserButton
               appearance={{
                 elements: {
-                  avatarBox: "h-8 w-8",
+                  avatarBox: "h-8 w-8 ring-2 ring-white/10 hover:ring-indigo-500/50 transition-all",
+                  userButtonPopoverCard:
+                    "bg-[#1A1D2E] border border-white/10 shadow-2xl shadow-black/60",
+                  userButtonPopoverHeader: "border-b border-white/8",
+                  userButtonPopoverFooter: "border-t border-white/8",
+                  userPreviewMainIdentifier: "text-white font-semibold",
+                  userPreviewSecondaryIdentifier: "text-slate-400",
+                  userButtonPopoverActionButton:
+                    "text-slate-300 hover:text-white hover:bg-white/5 transition-colors",
+                  userButtonPopoverActionButtonText: "text-slate-300 hover:text-white",
+                  userButtonPopoverActionButtonIcon: "text-slate-400",
                 },
               }}
             />

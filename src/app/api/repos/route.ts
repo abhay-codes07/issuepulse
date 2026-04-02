@@ -41,12 +41,16 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const repoStr = (body.repo as string || "").trim();
+  const raw = (body.repo as string || "").trim();
+
+  // Accept full GitHub URLs: https://github.com/owner/repo
+  const urlMatch = raw.match(/github\.com\/([^\/]+)\/([^\/\s?#]+)/);
+  const repoStr = urlMatch ? `${urlMatch[1]}/${urlMatch[2]}` : raw;
 
   const parts = repoStr.split("/");
   if (parts.length !== 2 || !parts[0] || !parts[1]) {
     return Response.json(
-      { error: "Invalid format. Use owner/repo" },
+      { error: "Invalid format. Use owner/repo or paste a GitHub URL" },
       { status: 400 }
     );
   }

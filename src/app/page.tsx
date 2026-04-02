@@ -33,7 +33,7 @@ function AnimatedTagCloud() {
           {[...LABELS, ...LABELS].map((label, i) => (
             <span
               key={`${label}-${i}`}
-              className="px-4 py-2 rounded-full text-sm font-medium bg-white/[0.03] border border-white/[0.06] text-muted-foreground/50 hover:text-indigo-300 hover:border-indigo-500/30 transition-colors"
+              className="px-4 py-2 rounded-full text-sm font-medium bg-white/[0.06] border border-white/[0.15] text-slate-400 hover:text-indigo-300 hover:border-indigo-500/50 transition-colors"
             >
               {label}
             </span>
@@ -71,17 +71,17 @@ function MockNotificationCard() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 + i * 0.15 }}
-              className="p-3 rounded-lg bg-white/[0.02] border border-white/5"
+              className="p-3 rounded-lg bg-white/[0.06] border border-white/10"
             >
-              <p className="text-[10px] text-muted-foreground/50 mb-0.5">📦 {n.repo}</p>
-              <p className="text-xs text-white/80 leading-snug">{n.title}</p>
+              <p className="text-[10px] text-slate-400 mb-0.5">📦 {n.repo}</p>
+              <p className="text-xs text-slate-100 leading-snug">{n.title}</p>
               <div className="flex items-center gap-2 mt-1.5">
                 {n.labels.map((l) => (
-                  <span key={l} className="text-[9px] px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300">
+                  <span key={l} className="text-[9px] px-1.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/20">
                     {l}
                   </span>
                 ))}
-                <span className="text-[9px] text-muted-foreground/40 ml-auto">{n.time}</span>
+                <span className="text-[9px] text-slate-500 ml-auto">{n.time}</span>
               </div>
             </motion.div>
           ))}
@@ -113,7 +113,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <Show when="signed-out">
               <SignInButton mode="modal">
-                <Button variant="ghost" className="text-muted-foreground hover:text-white">
+                <Button variant="ghost" className="text-slate-300 hover:text-white">
                   Sign In
                 </Button>
               </SignInButton>
@@ -153,7 +153,7 @@ export default function LandingPage() {
               <br />
               <span className="gradient-text">Get Notified.</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-10">
               Monitor open source repositories and get instant notifications when issues
               matching your chosen labels are created or updated.
             </p>
@@ -212,13 +212,13 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-indigo-500/20 transition-colors group"
+                className="p-6 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-indigo-500/40 transition-colors group"
               >
-                <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 w-fit mb-4 group-hover:bg-indigo-500/20 transition-colors">
+                <div className="p-2.5 rounded-xl bg-indigo-500/15 text-indigo-400 w-fit mb-4 group-hover:bg-indigo-500/25 transition-colors">
                   <f.icon className="h-5 w-5" />
                 </div>
                 <h3 className="text-base font-semibold text-white mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -228,11 +228,11 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-8">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
+          <div className="flex items-center gap-2 text-slate-400 text-sm">
             <Zap className="h-4 w-4 text-indigo-400" />
             IssuePulse
           </div>
-          <p className="text-xs text-muted-foreground/50">
+          <p className="text-xs text-slate-500">
             Built with Next.js, Clerk, and ❤️
           </p>
         </div>

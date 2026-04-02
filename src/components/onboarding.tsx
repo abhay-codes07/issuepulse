@@ -26,9 +26,16 @@ export function Onboarding({ show, onComplete }: OnboardingProps) {
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
 
+  /** Strip a full GitHub URL down to owner/repo */
+  function normalizeRepoInput(value: string): string {
+    const m = value.match(/github\.com\/([^/]+)\/([^/\s?#]+)/);
+    return m ? `${m[1]}/${m[2]}` : value;
+  }
+
   const handleAddRepo = async () => {
-    if (!repoInput.includes("/")) {
-      toast.error("Use format: owner/repo");
+    const normalized = normalizeRepoInput(repoInput.trim());
+    if (!normalized.includes("/")) {
+      toast.error("Use format: owner/repo or paste a GitHub URL");
       return;
     }
     setLoading(true);
@@ -36,7 +43,7 @@ export function Onboarding({ show, onComplete }: OnboardingProps) {
       const res = await fetch("/api/repos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ repo: repoInput.trim() }),
+        body: JSON.stringify({ repo: normalized }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -125,11 +132,11 @@ export function Onboarding({ show, onComplete }: OnboardingProps) {
               {step === 0 && (
                 <div className="space-y-3">
                   <Input
-                    placeholder="facebook/react"
+                    placeholder="facebook/react or paste a GitHub URL"
                     value={repoInput}
-                    onChange={(e) => setRepoInput(e.target.value)}
+                    onChange={(e) => setRepoInput(normalizeRepoInput(e.target.value))}
                     onKeyDown={(e) => e.key === "Enter" && handleAddRepo()}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-slate-500"
                   />
                   <Button
                     onClick={handleAddRepo}

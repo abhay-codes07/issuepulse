@@ -30,10 +30,16 @@ export function AddRepoModal({ onAdded }: AddRepoModalProps) {
     description: string;
   } | null>(null);
 
+  /** Strip a full GitHub URL down to owner/repo */
+  function normalizeRepoInput(value: string): string {
+    const m = value.match(/github\.com\/([^/]+)\/([^/\s?#]+)/);
+    return m ? `${m[1]}/${m[2]}` : value;
+  }
+
   const handleVerifyAndAdd = async () => {
-    const trimmed = repoInput.trim();
+    const trimmed = normalizeRepoInput(repoInput.trim());
     if (!trimmed.includes("/")) {
-      toast.error("Enter in owner/repo format (e.g. facebook/react)");
+      toast.error("Enter in owner/repo format or paste a GitHub URL");
       return;
     }
 
@@ -103,14 +109,14 @@ export function AddRepoModal({ onAdded }: AddRepoModalProps) {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/50" />
               <Input
                 id="repo-input"
-                placeholder="facebook/react"
+                placeholder="facebook/react or paste a GitHub URL"
                 value={repoInput}
                 onChange={(e) => {
-                  setRepoInput(e.target.value);
+                  setRepoInput(normalizeRepoInput(e.target.value));
                   setVerified(false);
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleVerifyAndAdd()}
-                className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-muted-foreground/40"
+                className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-slate-500"
                 disabled={loading}
               />
             </div>
