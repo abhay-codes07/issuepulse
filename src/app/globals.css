@@ -247,3 +247,123 @@
 .cl-userButtonPopoverFooter span {
   color: #64748B !important;
 }
+
+/* ── Clerk UserProfile / Manage Account modal ───────────────────── */
+.cl-modalContent,
+.cl-userProfile-root,
+.cl-profilePage,
+.cl-profileSection,
+.cl-profileSectionContent {
+  background: #1A1D2E !important;
+  color: #F8FAFC !important;
+}
+
+/* Left navbar */
+.cl-navbar,
+.cl-navbarMobileMenuRow {
+  background: #0D0F16 !important;
+  border-right: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.cl-navbarButton {
+  color: #CBD5E1 !important;
+}
+
+.cl-navbarButton:hover,
+.cl-navbarButton[data-active="true"],
+.cl-navbarButton[aria-current="page"] {
+  background: rgba(99,102,241,0.12) !important;
+  color: #818CF8 !important;
+}
+
+/* Section headings & text */
+.cl-profileSectionTitle,
+.cl-profileSectionTitleText,
+.cl-accordionTriggerButton,
+.cl-formFieldLabel,
+.cl-page,
+.cl-pageScrollBox {
+  color: #F8FAFC !important;
+  background: transparent !important;
+}
+
+/* Email / identifier rows */
+.cl-profileSectionItem,
+.cl-profileSectionItemList {
+  background: #252A3A !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 8px !important;
+  color: #F8FAFC !important;
+}
+
+.cl-profileSectionItem p,
+.cl-profileSectionItem span,
+.cl-badge {
+  color: #CBD5E1 !important;
+}
+
+/* "Primary" badge */
+.cl-badge {
+  background: rgba(99,102,241,0.2) !important;
+  color: #818CF8 !important;
+  border: 1px solid rgba(99,102,241,0.3) !important;
+}
+
+/* Action buttons */
+.cl-profileSectionPrimaryButton,
+.cl-formButtonPrimary {
+  background: #6366F1 !important;
+  color: #fff !important;
+}
+
+.cl-profileSectionPrimaryButton:hover,
+.cl-formButtonPrimary:hover {
+  background: #4F46E5 !important;
+}
+
+/* Secondary buttons */
+.cl-formButtonReset,
+.cl-profileSectionSecondaryButton {
+  color: #94A3B8 !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  background: transparent !important;
+}
+
+/* Input fields */
+.cl-formFieldInput {
+  background: #252A3A !important;
+  border-color: rgba(148,163,184,0.25) !important;
+  color: #F8FAFC !important;
+}
+
+/* Footer "Secured by Clerk" */
+.cl-footer {
+  background: #0D0F16 !important;
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.cl-footer span,
+.cl-footer a {
+  color: #475569 !important;
+}
+
+/* Scroll boxes */
+.cl-scrollBox,
+.cl-pageScrollBox {
+  background: #1A1D2E !important;
+}
+
+/* Three-dot menu */
+.cl-menuList {
+  background: #252A3A !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.cl-menuItem {
+  color: #CBD5E1 !important;
+}
+
+.cl-menuItem:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: #F8FAFC !important;
+}
