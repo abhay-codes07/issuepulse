@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -28,7 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "#6366F1",
+          colorBackground: "#1A1D2E",
+          colorText: "#F8FAFC",
+          colorInputBackground: "#252A3A",
+          colorInputText: "#F8FAFC",
+        },
+      }}
+    >
       <html
         lang="en"
         className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}

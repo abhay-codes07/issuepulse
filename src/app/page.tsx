@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Bell, GitFork, Tag, Zap, Shield, Mail, Eye } from "lucide-react";
+import { ArrowRight, Bell, GitFork, Tag, Zap, Shield, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
-import { useState, useEffect } from "react";
+import { Show, SignInButton } from "@clerk/nextjs";
 
 const LABELS = [
   "good first issue", "bug", "help wanted", "enhancement", "documentation",
@@ -112,7 +111,7 @@ export default function LandingPage() {
             <span className="text-lg font-bold text-white">IssuePulse</span>
           </Link>
           <div className="flex items-center gap-3">
-            <SignedOut>
+            <Show when="signed-out">
               <SignInButton mode="modal">
                 <Button variant="ghost" className="text-muted-foreground hover:text-white">
                   Sign In
@@ -123,15 +122,15 @@ export default function LandingPage() {
                   Get Started
                 </Button>
               </SignInButton>
-            </SignedOut>
-            <SignedIn>
+            </Show>
+            <Show when="signed-in">
               <Link href="/dashboard">
                 <Button className="bg-indigo-600 hover:bg-indigo-500 text-white">
                   Dashboard
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </Link>
-            </SignedIn>
+            </Show>
           </div>
         </div>
       </nav>
@@ -166,22 +165,22 @@ export default function LandingPage() {
             transition={{ delay: 0.3 }}
             className="flex items-center justify-center gap-4 mb-20"
           >
-            <SignedOut>
+            <Show when="signed-out">
               <SignInButton mode="modal">
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-500 text-white px-8 text-base h-12">
                   Start Tracking in 30 Seconds
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </SignInButton>
-            </SignedOut>
-            <SignedIn>
+            </Show>
+            <Show when="signed-in">
               <Link href="/dashboard">
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-500 text-white px-8 text-base h-12">
                   Go to Dashboard
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
-            </SignedIn>
+            </Show>
           </motion.div>
 
           <MockNotificationCard />

@@ -79,15 +79,17 @@ export function AddRepoModal({ onAdded }: AddRepoModalProps) {
         setRepoInfo(null);
       }
     }}>
-      <DialogTrigger asChild>
-        <Button
-          className="bg-indigo-600 hover:bg-indigo-500 text-white gap-2"
-          id="add-repo-button"
+      <DialogTrigger
+          render={
+            <Button
+              className="bg-indigo-600 hover:bg-indigo-500 text-white gap-2"
+              id="add-repo-button"
+            />
+          }
         >
           <Plus className="h-4 w-4" />
           Add Repo
-        </Button>
-      </DialogTrigger>
+        </DialogTrigger>
       <DialogContent className="bg-[#1A1D2E] border-white/10 sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-white">Track a Repository</DialogTitle>

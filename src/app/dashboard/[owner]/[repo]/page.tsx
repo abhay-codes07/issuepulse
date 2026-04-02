@@ -6,7 +6,6 @@ import { GitFork, ExternalLink, Mail, Bell, Loader2, Trash2, ArrowLeft } from "l
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { LabelSelector } from "@/components/label-selector";
 import { IssueCard } from "@/components/issue-card";
 import { EmptyState } from "@/components/empty-state";
