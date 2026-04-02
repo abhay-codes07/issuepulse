@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { getOrCreateUser } from "@/lib/auth";
 import { verifyRepo } from "@/lib/github";
